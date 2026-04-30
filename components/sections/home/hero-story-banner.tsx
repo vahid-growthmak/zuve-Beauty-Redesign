@@ -5,7 +5,7 @@ export function HeroStoryBanner() {
   return (
     <section className="relative h-[70vh] min-h-[520px] w-full overflow-hidden">
       <Image
-        src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=2880&q=80"
+        src="/images/home/home_story_silk.png"
         alt="A hand draped on rose-tinted silk."
         fill
         className="object-cover"

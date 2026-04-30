@@ -7,7 +7,7 @@ export const collections: Collection[] = [
     eyebrow: "THE COLLECTION",
     italicDescriptor: "A curated edit of rose-tinted shades for the considered hand.",
     heroImage:
-      "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=2400&q=80",
+      "/images/collections/collection_hero_petals.png",
     intro: [
       "Soft Feminine is the season's edit of rose-tinted, low-saturation shades — composed for the woman who would rather whisper than declare.",
       "Each tile is hand-finished in our Mumbai atelier, then quality-checked by the founder before it leaves the workshop. The shapes are deliberately restrained: a softened almond, a clean squoval, a tapered coffin.",
@@ -27,7 +27,7 @@ export const collections: Collection[] = [
     nextCollectionSlug: "bridal-edit",
     nextCollectionName: "Bridal Edit",
     midBreakImage:
-      "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=2400&q=80",
+      "/images/collections/collection_editorial_vanity.png",
     midBreakHeadline: "A note for her.",
     midBreakCaption: "An edit, not a catalogue. Composed by hand.",
   },

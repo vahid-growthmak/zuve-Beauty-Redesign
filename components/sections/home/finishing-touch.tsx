@@ -5,19 +5,19 @@ const tiles = [
   {
     title: "The art of gifting",
     image:
-      "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=1600&q=80",
+      "/images/home/home_triptych_gifting.png",
     href: "#",
   },
   {
     title: "The personal touch",
     image:
-      "https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&w=1600&q=80",
+      "/images/home/home_triptych_personal.png",
     href: "#",
   },
   {
     title: "Considered, by hand",
     image:
-      "https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=1600&q=80",
+      "/images/home/home_ritual_lifestyle.png",
     href: "#",
   },
 ];

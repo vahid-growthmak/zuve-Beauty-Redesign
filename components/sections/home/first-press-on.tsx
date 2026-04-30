@@ -7,7 +7,7 @@ export function FirstPressOn() {
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="relative aspect-[4/5] md:aspect-auto md:h-[680px]">
           <Image
-            src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1800&q=80"
+            src="/images/home/home_featured_hands.png"
             alt="A close-up of hands wearing the first Zuve press-on set."
             fill
             className="object-cover"
