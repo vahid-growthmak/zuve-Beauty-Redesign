@@ -12,7 +12,7 @@ export function SeasonalDrop() {
           <div className="md:col-span-5 md:order-2">
             <div className="relative aspect-[4/5] bg-cream">
               <Image
-                src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1600&q=80"
+                src="/images/home/home_newdrop_lifestyle.png"
                 alt="A model wearing the Summer 2026 collection."
                 fill
                 className="object-cover"

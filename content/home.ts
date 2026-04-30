@@ -6,7 +6,7 @@ export const heroSlides = [
     cta: "Discover the gifting edit",
     href: "/collections/soft-feminine",
     image:
-      "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=2880&q=80",
+      "/images/home/home_hero_bridal.png",
     align: "right" as const,
     chip: "Bridal",
   },
@@ -17,7 +17,7 @@ export const heroSlides = [
     cta: "Discover Soft Feminine",
     href: "/collections/soft-feminine",
     image:
-      "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=2880&q=80",
+      "/images/home/home_hero_everyday.png",
     align: "left" as const,
     chip: "Everyday",
   },
@@ -28,7 +28,7 @@ export const heroSlides = [
     cta: "Read the story",
     href: "/collections/bridal-edit",
     image:
-      "https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=2880&q=80",
+      "/images/home/home_hero_statement.png",
     align: "right" as const,
     chip: "Statement",
   },

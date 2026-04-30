@@ -12,7 +12,7 @@ export function ZuveRitual() {
           <div className="md:col-span-5">
             <div className="relative aspect-[4/5] bg-cream">
               <Image
-                src="https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=1600&q=80"
+                src="/images/home/home_ritual_lifestyle.png"
                 alt="A woman holding a Zuve press-on case in window light."
                 fill
                 className="object-cover"
