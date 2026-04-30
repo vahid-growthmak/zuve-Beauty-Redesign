@@ -1,0 +1,75 @@
+import Image from "next/image";
+import Link from "next/link";
+
+const tiles = [
+  {
+    title: "The art of gifting",
+    image:
+      "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=1600&q=80",
+    href: "#",
+  },
+  {
+    title: "The personal touch",
+    image:
+      "https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&w=1600&q=80",
+    href: "#",
+  },
+  {
+    title: "Considered, by hand",
+    image:
+      "https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=1600&q=80",
+    href: "#",
+  },
+];
+
+export function FinishingTouch() {
+  return (
+    <section className="bg-bone pt-16 md:pt-24 pb-24 md:pb-32">
+      <div className="container-1440">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10">
+          <div className="md:col-span-1 md:pr-6">
+            <p className="eyebrow mb-4">THE FINISHING TOUCH</p>
+            <h2 className="font-serif text-h1" style={{ fontWeight: 300 }}>
+              Perfection is in the details.
+            </h2>
+            <p className="mt-6 text-body text-ink/80">
+              Discover Zuve's exclusive services to elevate your gift and make
+              every moment unforgettable.
+            </p>
+            <div className="mt-8">
+              <Link href="#" className="link-hairline">
+                Discover
+              </Link>
+            </div>
+          </div>
+          {tiles.map((t) => (
+            <Link
+              key={t.title}
+              href={t.href}
+              className="md:col-span-1 group relative block"
+            >
+              <div className="relative aspect-[3/4] bg-cream overflow-hidden">
+                <Image
+                  src={t.image}
+                  alt={t.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5 text-bone">
+                  <p className="font-serif text-h3" style={{ fontWeight: 400 }}>
+                    {t.title}
+                  </p>
+                  <span className="inline-block mt-3 text-[11px] uppercase tracking-wider2 link-hairline link-hairline-reverse text-bone">
+                    Discover
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

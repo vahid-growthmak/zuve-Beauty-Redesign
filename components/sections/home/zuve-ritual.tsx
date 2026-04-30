@@ -1,0 +1,45 @@
+import Image from "next/image";
+import Link from "next/link";
+import { ProductCard } from "@/components/site/product-card";
+import { listProducts } from "@/content/products";
+
+export function ZuveRitual() {
+  const trio = listProducts().slice(0, 3);
+  return (
+    <section className="bg-bone py-24 md:py-32">
+      <div className="container-1440">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+          <div className="md:col-span-5">
+            <div className="relative aspect-[4/5] bg-cream">
+              <Image
+                src="https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=1600&q=80"
+                alt="A woman holding a Zuve press-on case in window light."
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
+            </div>
+          </div>
+          <div className="md:col-span-7">
+            <div className="text-center md:text-left mb-10 md:mb-12">
+              <p className="eyebrow mb-4">THE RITUAL</p>
+              <h2 className="font-serif text-h1 md:text-display-sm" style={{ fontWeight: 300 }}>
+                The Zuve Beauty ritual
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+              {trio.map((p) => (
+                <ProductCard key={p.id} product={p} showQuickAdd={false} />
+              ))}
+            </div>
+            <div className="mt-12 text-center md:text-left">
+              <Link href="/collections/soft-feminine" className="btn-ghost">
+                Discover the ritual
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
