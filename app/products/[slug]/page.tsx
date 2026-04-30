@@ -187,7 +187,7 @@ export default function ProductPage({
       {/* 6.4.5 Lifestyle Video Block (placeholder image) */}
       <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1599948128020-9a44f8ab51ed?auto=format&fit=crop&w=2880&q=80"
+          src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=2880&q=80"
           alt="Lifestyle moment"
           fill
           sizes="100vw"
@@ -219,11 +219,11 @@ export default function ProductPage({
               "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80",
               "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=600&q=80",
               "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=600&q=80",
-              "https://images.unsplash.com/photo-1599948128020-9a44f8ab51ed?auto=format&fit=crop&w=600&q=80",
+              "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=600&q=80",
               "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=600&q=80",
               "https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?auto=format&fit=crop&w=600&q=80",
               "https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&w=600&q=80",
-              "https://images.unsplash.com/photo-1604654894611-1ad84e7ed2f9?auto=format&fit=crop&w=600&q=80",
+              "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80",
             ].map((src, i) => (
               <div key={i} className="relative aspect-square bg-cream">
                 <Image

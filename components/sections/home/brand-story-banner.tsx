@@ -5,7 +5,7 @@ export function BrandStoryBanner() {
   return (
     <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden bg-ink">
       <Image
-        src="https://images.unsplash.com/photo-1631214540242-3cd8c4b0b3b8?auto=format&fit=crop&w=2880&q=80"
+        src="https://images.unsplash.com/photo-1611042553365-9b101441c135?auto=format&fit=crop&w=2880&q=80"
         alt="Zuve packaging photographed as still life."
         fill
         className="object-cover opacity-90"
