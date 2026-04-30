@@ -87,7 +87,7 @@ export const products: Product[] = [
       "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1599948128020-9a44f8ab51ed?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=1600&q=80",
     ],
     ingredients: [
@@ -123,11 +123,11 @@ export const products: Product[] = [
     rating: 4.7,
     reviewCount: 86,
     primaryImage:
-      "https://images.unsplash.com/photo-1604654894611-1ad84e7ed2f9?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1400&q=80",
     hoverImage:
       "https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&w=1400&q=80",
     galleryImages: [
-      "https://images.unsplash.com/photo-1604654894611-1ad84e7ed2f9?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1601612628452-9e99ced43524?auto=format&fit=crop&w=1600&q=80",
     ],
     ingredients: ["Premium soft-gel", "Non-yellowing top finish"],
@@ -225,11 +225,11 @@ export const products: Product[] = [
     rating: 4.8,
     reviewCount: 98,
     primaryImage:
-      "https://images.unsplash.com/photo-1599948128020-9a44f8ab51ed?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1400&q=80",
     hoverImage:
       "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1400&q=80",
     galleryImages: [
-      "https://images.unsplash.com/photo-1599948128020-9a44f8ab51ed?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1600&q=80",
     ],
     ingredients: ["Premium soft-gel", "High-gloss top finish"],
     howToApply: [
@@ -289,11 +289,11 @@ export const products: Product[] = [
     rating: 4.6,
     reviewCount: 41,
     primaryImage:
-      "https://images.unsplash.com/photo-1631214540242-3cd8c4b0b3b8?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1611042553365-9b101441c135?auto=format&fit=crop&w=1400&q=80",
     hoverImage:
       "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1400&q=80",
     galleryImages: [
-      "https://images.unsplash.com/photo-1631214540242-3cd8c4b0b3b8?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1611042553365-9b101441c135?auto=format&fit=crop&w=1600&q=80",
     ],
     ingredients: ["Stainless steel pusher", "Three-grain buffer"],
     howToApply: ["Use as part of the application ritual."],
@@ -317,7 +317,7 @@ export const products: Product[] = [
     primaryImage:
       "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1400&q=80",
     hoverImage:
-      "https://images.unsplash.com/photo-1631214540242-3cd8c4b0b3b8?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1611042553365-9b101441c135?auto=format&fit=crop&w=1400&q=80",
     galleryImages: [
       "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1600&q=80",
     ],
