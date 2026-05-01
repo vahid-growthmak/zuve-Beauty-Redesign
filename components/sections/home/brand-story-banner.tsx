@@ -5,13 +5,14 @@ export function BrandStoryBanner() {
   return (
     <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden bg-ink">
       <Image
-        src="/images/home/home_brand_packaging.png"
+        src="/images/home/home_brand_dressed.png"
         alt="Zuve packaging photographed as still life."
         fill
+        quality={100}
         className="object-cover opacity-90"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/20 to-transparent" />
+      <div className="absolute inset-0 bg-ink/30 bg-gradient-to-t from-ink/60 via-ink/20 to-transparent" />
       <div className="absolute inset-0 flex items-end justify-center pb-16 md:pb-24 px-6 text-center text-bone">
         <div className="max-w-2xl">
           <h2

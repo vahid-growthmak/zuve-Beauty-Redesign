@@ -139,7 +139,7 @@ export default function CollectionPage({
               The collection
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
+          <div className="flex overflow-x-auto gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-6 md:gap-10 snap-x snap-mandatory pb-4 sm:pb-0 no-scrollbar">
             {core.map((p, i) =>
               p ? (
                 <div
@@ -188,7 +188,7 @@ export default function CollectionPage({
               The supporting cast
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="flex overflow-x-auto gap-4 sm:grid sm:grid-cols-2 md:grid-cols-4 sm:gap-6 md:gap-8 snap-x snap-mandatory pb-4 sm:pb-0 no-scrollbar">
             {companions.map((p) =>
               p ? <ProductCard key={p.id} product={p} /> : null,
             )}

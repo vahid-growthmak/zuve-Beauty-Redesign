@@ -6,7 +6,7 @@ export const heroSlides = [
     cta: "Discover the gifting edit",
     href: "/collections/soft-feminine",
     image:
-      "/images/home/home_hero_bridal.png",
+      "/images/home/home_hero_bridal_ls.png",
     align: "right" as const,
     chip: "Bridal",
   },
@@ -17,7 +17,7 @@ export const heroSlides = [
     cta: "Discover Soft Feminine",
     href: "/collections/soft-feminine",
     image:
-      "/images/home/home_hero_everyday.png",
+      "/images/home/home_hero_everyday_ls.png",
     align: "left" as const,
     chip: "Everyday",
   },
@@ -28,7 +28,7 @@ export const heroSlides = [
     cta: "Read the story",
     href: "/collections/bridal-edit",
     image:
-      "/images/home/home_hero_statement.png",
+      "/images/home/home_hero_statement_ls.png",
     align: "right" as const,
     chip: "Statement",
   },
