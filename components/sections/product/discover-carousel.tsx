@@ -10,7 +10,7 @@ export function DiscoverCarousel({ items }: { items: Product[] }) {
         <h2 className="text-center font-serif text-h1 mb-12" style={{ fontWeight: 300 }}>
           Discover
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        <div className="flex overflow-x-auto gap-4 sm:grid sm:grid-cols-2 md:grid-cols-4 sm:gap-6 md:gap-8 snap-x snap-mandatory pb-4 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 no-scrollbar">
           {items.slice(0, 4).map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}

@@ -28,8 +28,9 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header
-      className={cn(
+    <>
+      <header
+        className={cn(
         "sticky top-0 z-40 transition-colors duration-300 ease-out-expo border-b border-gold/30",
         scrolled
           ? "bg-bone/85 backdrop-blur-md"
@@ -91,6 +92,8 @@ export function SiteHeader() {
         </div>
       </div>
 
+      </header>
+
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-50 bg-bone">
@@ -118,6 +121,6 @@ export function SiteHeader() {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }

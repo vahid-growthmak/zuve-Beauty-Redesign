@@ -7,12 +7,12 @@ export function CrossSellRow({ items }: { items: Product[] }) {
   return (
     <section className="bg-bone py-20 md:py-24">
       <div className="container-1440">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        <div className="flex overflow-x-auto gap-4 sm:grid sm:grid-cols-1 md:grid-cols-3 sm:gap-8 md:gap-10 snap-x snap-mandatory pb-4 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 no-scrollbar">
           {items.slice(0, 3).map((p, i) => (
             <Link
               key={p.id}
               href={`/products/${p.slug}`}
-              className="group block text-center"
+              className="shrink-0 min-w-[75vw] snap-start sm:min-w-0 sm:shrink group block text-center"
             >
               <div className="relative aspect-[4/5] bg-cream overflow-hidden">
                 <Image
