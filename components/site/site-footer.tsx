@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, Instagram, Youtube } from "lucide-react";
+import { ChevronDown, Instagram, Youtube, Facebook } from "lucide-react";
 
 const COLUMNS = [
   {
@@ -158,13 +158,15 @@ export function SiteFooter() {
           </div>
           <div className="flex items-center gap-6 text-mute">
             <Link href="#" aria-label="TikTok" className="hover:text-ink">
-              <span className="text-[11px] uppercase tracking-wider2">TikTok</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+              </svg>
             </Link>
             <Link href="#" aria-label="Instagram" className="hover:text-ink">
               <Instagram size={16} strokeWidth={1.5} />
             </Link>
             <Link href="#" aria-label="Facebook" className="hover:text-ink">
-              <span className="text-[11px] uppercase tracking-wider2">Facebook</span>
+              <Facebook size={16} strokeWidth={1.5} />
             </Link>
             <Link href="#" aria-label="YouTube" className="hover:text-ink">
               <Youtube size={16} strokeWidth={1.5} />
