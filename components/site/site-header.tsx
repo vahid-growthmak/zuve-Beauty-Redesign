@@ -38,51 +38,67 @@ export function SiteHeader() {
       )}
     >
       <div className="container-1440 flex items-center justify-between h-16 md:h-20">
-        {/* Mobile menu */}
-        <button
-          aria-label="Open menu"
-          className="md:hidden -ml-1 p-2"
-          onClick={() => setMobileOpen(true)}
-        >
-          <Menu size={20} strokeWidth={1.5} />
-        </button>
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8 flex-1">
-          {NAV.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-[11px] uppercase tracking-wider2 hover:text-mute transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Wordmark */}
-        <Link
-          href="/"
-          className="font-serif text-[26px] md:text-[32px] tracking-wordmark leading-none"
-          style={{ fontWeight: 400 }}
-        >
-          ZUVE
-        </Link>
-
-        {/* Right utilities */}
-        <div className="flex items-center gap-4 flex-1 justify-end">
-          <button aria-label="Search" className="p-2 hidden sm:block">
-            <Search size={18} strokeWidth={1.5} />
+        {/* Left side: Mobile Menu & Search OR Desktop Nav */}
+        <div className="flex items-center gap-3 md:gap-8 flex-1">
+          {/* Mobile menu (2 thin lines to match Dior) */}
+          <button
+            aria-label="Open menu"
+            className="md:hidden -ml-2 p-2"
+            onClick={() => setMobileOpen(true)}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round">
+              <line x1="3" y1="10" x2="21" y2="10" />
+              <line x1="3" y1="14" x2="21" y2="14" />
+            </svg>
           </button>
-          <button aria-label="Account" className="p-2 hidden sm:block">
-            <User size={18} strokeWidth={1.5} />
+
+          {/* Mobile Search */}
+          <button aria-label="Search" className="md:hidden p-2">
+            <Search size={22} strokeWidth={1} />
           </button>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {NAV.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-[11px] uppercase tracking-wider2 hover:text-mute transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Center: Wordmark */}
+        <div className="flex justify-center shrink-0">
+          <Link
+            href="/"
+            className="font-serif text-[28px] md:text-[32px] tracking-wordmark leading-none"
+            style={{ fontWeight: 400 }}
+          >
+            ZUVE
+          </Link>
+        </div>
+
+        {/* Right side: Search (desktop), Account, Cart */}
+        <div className="flex items-center gap-3 md:gap-4 flex-1 justify-end">
+          <button aria-label="Search" className="p-2 hidden md:block">
+            <Search size={22} strokeWidth={1} />
+          </button>
+          
+          <button aria-label="Account" className="p-2 relative -mr-1">
+            <User size={22} strokeWidth={1} />
+            <span className="absolute top-1.5 right-1 w-2 h-2 bg-[#f26d21] rounded-full border-[1.5px] border-bone" />
+          </button>
+          
           <button
             aria-label="Open cart"
-            className="p-2 relative"
+            className="p-2 relative -mr-2"
             onClick={open}
           >
-            <ShoppingBag size={18} strokeWidth={1.5} />
+            <ShoppingBag size={22} strokeWidth={1} />
             {count > 0 && (
               <span className="absolute -top-0.5 -right-0.5 bg-rose text-ink text-[10px] rounded-full w-4 h-4 flex items-center justify-center font-medium">
                 {count}
