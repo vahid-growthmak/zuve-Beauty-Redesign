@@ -45,6 +45,7 @@ export function HeroCarousel() {
               fill
               priority={i === 0}
               sizes="100vw"
+              quality={100}
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-ink/10 via-transparent to-ink/10" />

@@ -8,6 +8,7 @@ export function BrandStoryBanner() {
         src="/images/home/home_brand_dressed.png"
         alt="Zuve packaging photographed as still life."
         fill
+        quality={100}
         className="object-cover opacity-90"
         sizes="100vw"
       />
