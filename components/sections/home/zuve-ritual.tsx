@@ -27,7 +27,7 @@ export function ZuveRitual() {
                 The Zuve Beauty ritual
               </h2>
             </div>
-            <div className="flex overflow-x-auto gap-4 sm:grid sm:grid-cols-3 sm:gap-8 snap-x snap-mandatory pb-4 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 no-scrollbar">
+            <div className="flex overflow-x-auto gap-4 sm:grid sm:grid-cols-3 sm:gap-8 snap-x snap-mandatory pb-4 sm:pb-0 no-scrollbar">
               {trio.map((p) => (
                 <ProductCard key={p.id} product={p} showQuickAdd={false} />
               ))}

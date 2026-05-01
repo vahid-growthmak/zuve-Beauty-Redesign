@@ -103,7 +103,7 @@ export function HeroCarousel() {
 
       {/* Chapter thumbnails */}
       <div className="border-y border-gold/30 bg-bone">
-        <div className="container-1440 flex overflow-x-auto no-scrollbar snap-x snap-mandatory md:grid md:grid-cols-3 -mx-6 px-6 md:mx-0 md:px-0">
+        <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 flex overflow-x-auto no-scrollbar snap-x snap-mandatory md:grid md:grid-cols-3">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.id}

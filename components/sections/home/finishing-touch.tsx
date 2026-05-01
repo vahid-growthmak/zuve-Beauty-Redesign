@@ -42,7 +42,7 @@ export function FinishingTouch() {
               </Link>
             </div>
           </div>
-          <div className="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 md:col-span-3 md:grid md:grid-cols-3 md:gap-10 no-scrollbar">
+          <div className="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-4 md:pb-0 md:col-span-3 md:grid md:grid-cols-3 md:gap-10 no-scrollbar">
           {tiles.map((t) => (
             <Link
               key={t.title}

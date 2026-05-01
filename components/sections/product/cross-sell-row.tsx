@@ -7,7 +7,7 @@ export function CrossSellRow({ items }: { items: Product[] }) {
   return (
     <section className="bg-bone py-20 md:py-24">
       <div className="container-1440">
-        <div className="flex overflow-x-auto gap-4 sm:grid sm:grid-cols-1 md:grid-cols-3 sm:gap-8 md:gap-10 snap-x snap-mandatory pb-4 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 no-scrollbar">
+        <div className="flex overflow-x-auto gap-4 sm:grid sm:grid-cols-1 md:grid-cols-3 sm:gap-8 md:gap-10 snap-x snap-mandatory pb-4 sm:pb-0 no-scrollbar">
           {items.slice(0, 3).map((p, i) => (
             <Link
               key={p.id}
