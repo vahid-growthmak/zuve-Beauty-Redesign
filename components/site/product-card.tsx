@@ -35,7 +35,7 @@ export function ProductCard({
 
   return (
     <article
-      className="group block"
+      className="group block min-w-[75vw] sm:min-w-0 shrink-0 snap-start"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

@@ -30,7 +30,7 @@ export function HeroCarousel() {
       aria-roledescription="carousel"
       aria-label="Featured edits"
     >
-      <div className="relative h-[70vh] md:h-[80vh] max-h-[720px] w-full overflow-hidden">
+      <div className="relative h-[calc(100vh-104px)] md:h-[calc(100vh-120px)] w-full overflow-hidden">
         {heroSlides.map((slide, i) => (
           <div
             key={slide.id}
@@ -102,12 +102,12 @@ export function HeroCarousel() {
 
       {/* Chapter thumbnails */}
       <div className="border-y border-gold/30 bg-bone">
-        <div className="container-1440 grid grid-cols-3">
+        <div className="container-1440 flex overflow-x-auto no-scrollbar snap-x snap-mandatory md:grid md:grid-cols-3">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.id}
               onClick={() => setActive(i)}
-              className={`flex items-center gap-3 md:gap-4 py-3 md:py-4 px-2 md:px-4 border-r last:border-r-0 border-gold/20 hover:bg-cream/50 transition-colors text-left ${
+              className={`flex shrink-0 min-w-[280px] snap-start md:min-w-0 items-center gap-3 md:gap-4 py-3 md:py-4 px-2 md:px-4 border-r last:border-r-0 border-gold/20 hover:bg-cream/50 transition-colors text-left ${
                 i === active ? "bg-cream/40" : ""
               }`}
             >

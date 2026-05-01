@@ -26,7 +26,7 @@ export function FinishingTouch() {
   return (
     <section className="bg-bone pt-16 md:pt-24 pb-24 md:pb-32">
       <div className="container-1440">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10">
+        <div className="flex flex-col md:grid md:grid-cols-4 gap-8 md:gap-10">
           <div className="md:col-span-1 md:pr-6">
             <p className="eyebrow mb-4">THE FINISHING TOUCH</p>
             <h2 className="font-serif text-h1" style={{ fontWeight: 300 }}>
@@ -42,11 +42,12 @@ export function FinishingTouch() {
               </Link>
             </div>
           </div>
+          <div className="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 md:col-span-3 md:grid md:grid-cols-3 md:gap-10 no-scrollbar">
           {tiles.map((t) => (
             <Link
               key={t.title}
               href={t.href}
-              className="md:col-span-1 group relative block"
+              className="shrink-0 min-w-[75vw] snap-start md:min-w-0 md:col-span-1 group relative block"
             >
               <div className="relative aspect-[3/4] bg-cream overflow-hidden">
                 <Image
@@ -68,6 +69,7 @@ export function FinishingTouch() {
               </div>
             </Link>
           ))}
+          </div>
         </div>
       </div>
     </section>
