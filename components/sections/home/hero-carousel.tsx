@@ -103,12 +103,12 @@ export function HeroCarousel() {
 
       {/* Chapter thumbnails */}
       <div className="border-y border-gold/30 bg-bone">
-        <div className="container-1440 flex overflow-x-auto no-scrollbar snap-x snap-mandatory md:grid md:grid-cols-3">
+        <div className="container-1440 flex overflow-x-auto no-scrollbar snap-x snap-mandatory md:grid md:grid-cols-3 -mx-6 px-6 md:mx-0 md:px-0">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.id}
               onClick={() => setActive(i)}
-              className={`flex shrink-0 min-w-[280px] snap-start md:min-w-0 items-center gap-3 md:gap-4 py-3 md:py-4 px-2 md:px-4 border-r last:border-r-0 border-gold/20 hover:bg-cream/50 transition-colors text-left ${
+              className={`flex shrink-0 w-[75vw] sm:w-[50vw] md:w-auto snap-start items-center gap-3 md:gap-4 py-3 md:py-4 px-4 md:px-6 border-r last:border-r-0 border-gold/20 hover:bg-cream/50 transition-colors text-left ${
                 i === active ? "bg-cream/40" : ""
               }`}
             >
