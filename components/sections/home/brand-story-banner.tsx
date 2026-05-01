@@ -5,7 +5,7 @@ export function BrandStoryBanner() {
   return (
     <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden bg-ink">
       <Image
-        src="/images/home/home_brand_packaging.png"
+        src="/images/home/home_brand_dressed.png"
         alt="Zuve packaging photographed as still life."
         fill
         className="object-cover opacity-90"
