@@ -20,6 +20,7 @@ type Props = {
     | "originalPrice"
     | "defaultShape"
     | "descriptor"
+    | "category"
   >;
   size?: "default" | "tall";
   showQuickAdd?: boolean;
@@ -97,9 +98,9 @@ export function ProductCard({
               }`}
             />
           </h3>
-          {product.descriptor && (
-            <p className="mt-1 text-[11px] uppercase tracking-wider2 text-mute truncate px-4">
-              {product.descriptor.split(".")[0]}
+          {product.category && (
+            <p className="mt-1 text-[11px] uppercase tracking-wider2 text-mute">
+              {product.category}
             </p>
           )}
           <p className="mt-3 text-small flex items-center justify-center gap-2">
