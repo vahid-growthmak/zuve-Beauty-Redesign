@@ -18,7 +18,7 @@ export const collections: Collection[] = [
     coreProductIds: ["rose-bloom", "porcelain", "champagne", "petal", "berry-bloom", "noir"],
     companionProductIds: ["prep-kit", "remover"],
     giftingImage:
-      "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=1600&q=80",
+      "/images/collections/collection_gifting.png",
     giftingHeadline: "The art of gifting.",
     giftingBody:
       "Each set arrives in our signature reusable case, dressed in a hand-tied ribbon. Add a complimentary monogrammed card at checkout.",

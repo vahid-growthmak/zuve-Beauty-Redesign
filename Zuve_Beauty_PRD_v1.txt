@@ -1,0 +1,486 @@
+
+PRODUCT REQUIREMENTS DOCUMENT
+ZUVE BEAUTY
+E-Commerce Web Experience  /  v1.0
+An editorial, luxury-inspired e-commerce experience for India's premium press-on nail brand — built in Next.js with Antigravity, designed in the spirit of Dior Beauty.
+Prepared for
+Engineering & Design — Antigravity Build Team
+Date
+April 2026
+
+Contents
+
+
+
+1. Overview
+1.1 Project Summary
+Zuve Beauty is a direct-to-consumer press-on nail brand in India offering salon-quality, reusable soft-gel nails. This document specifies the requirements for a complete redesign of the Zuve Beauty e-commerce website — built in Next.js using the Antigravity development platform — modelled in look, feel, and editorial structure on Dior Beauty (dior.com/en_us/beauty).
+The redesign serves two strategic goals: first, to elevate Zuve Beauty's perceived brand equity from a transactional D2C site to a luxury beauty destination; and second, to systematically resolve the conversion friction identified in the existing CRO audit — most notably around sizing uncertainty, missing trust signals, and a heavy checkout flow.
+1.2 Scope
+The scope of this v1.0 build is intentionally focused. Three pages will be designed, built, and shipped:
+	•	Home Page — the brand storefront, modelled on the Dior Beauty home.
+	•	Collection / Landing Page — a curated edit page (e.g. "Soft Feminine" or a seasonal drop), modelled on the Dior Mother's Day fragrance edit.
+	•	Product Detail Page (PDP) — the immersive single-product page, modelled on the Miss Dior Body Milk page.
+
+Out of scope for v1.0: cart page, checkout, account/login, blog/journal, search results page, admin/CMS surface. These are referenced where they affect interaction (e.g. "Add to Bag" routes to a slide-out cart that lives on this page) but are not full deliverables.
+1.3 Strategic Goals
+	•	Brand elevation: position Zuve as the Dior of Indian press-on nails — editorial, considered, premium.
+	•	Conversion lift: address every High and Medium priority issue from the existing CRO audit (Section 5 of audit) within the three pages in scope.
+	•	Mobile-first parity: ≥60% of Indian beauty traffic is mobile; the experience must feel first-class on a phone, not a scaled-down desktop.
+	•	India-context fit: INR pricing, UPI as primary payment cue, COD transparency, free-shipping threshold visible, WhatsApp support trigger.
+1.4 Success Metrics
+Metric
+Current (audit baseline)
+v1.0 Target
+Add-to-bag rate (PDP)
+Baseline TBD on launch
++25% relative
+PDP-to-purchase conversion
+Baseline TBD
++30% relative
+Bounce rate (Home)
+Baseline TBD
+Reduce by 15%
+Avg. session duration
+Baseline TBD
++40 seconds
+Lighthouse Performance (mobile)
+N/A
+≥ 90
+Largest Contentful Paint (mobile)
+N/A
+< 2.5s on 4G
+
+2. Design Language
+DESIGN PRINCIPLE  Restraint over decoration. Whitespace is a feature. Photography is the hero. Typography whispers, never shouts.
+2.1 Aesthetic Reference
+The design reference is dior.com/en_us/beauty. The aesthetic is editorial luxury: large, generous whitespace; cinematic full-bleed photography alternating with negative space; product compositions photographed as still life; serif headlines paired with a clean sans-serif for utility; a near-monochrome palette punctuated by the natural colour of the products themselves.
+Zuve adopts this language but adapts it for press-on nails: the "hero object" is the manicured hand, not a perfume bottle. Where Dior shows a fragrance suspended in motion, Zuve shows hands — close, considered, well-lit, on neutral or rose-tinted backgrounds.
+2.2 Brand Tokens
+Color Palette
+Token
+Hex
+Use
+Tailwind class
+--ink
+#1A1A1A
+Primary text, headlines
+text-ink
+--bone
+#FAF7F2
+Page background
+bg-bone
+--cream
+#F5EFE6
+Section dividers, cards
+bg-cream
+--rose
+#E8C4C4
+Brand accent, hover states
+bg-rose
+--gold
+#C9A87C
+Hairlines, premium accents
+text-gold
+--mute
+#8B8B8B
+Secondary text, labels
+text-mute
+--success
+#5A7A5A
+Stock indicators, confirmations
+text-success
+Typography
+Display / Editorial: "Cormorant Garamond" (Google Fonts) — used for hero headlines, section titles, the brand wordmark in product callouts. Pairs the high-contrast serif feel of Dior's editorial type. Weight 300 for display, 400 for body when serif is used. 
+UI / Body: "Inter" — used for navigation, prices, buttons, descriptions, fine print. Tracking +20 on small caps and labels.
+Type scale (rem): 3.75 (display) / 2.5 (h1) / 1.875 (h2) / 1.25 (h3) / 1 (body) / 0.875 (small) / 0.75 (caption). All set in Tailwind config.
+Letter-spacing: nav and small-caps labels at +0.08em; display headlines at -0.01em.
+Spacing & Layout
+	•	8px base grid. Spacing scale: 4, 8, 16, 24, 32, 48, 64, 96, 128 px.
+	•	Container max-width: 1440px. Inner content rarely exceeds 1200px; long-form text columns capped at 640px.
+	•	Vertical rhythm between sections: 96px on desktop, 64px on mobile.
+	•	Asymmetric layouts are encouraged — Dior frequently breaks grid by offsetting a product image into negative space. Replicate this on the Home and PDP.
+Imagery & Motion
+	•	Photography is always the visual lead. Product shots on neutral seamless paper or rose-tinted backdrops. Hand shots are tightly cropped, hero-lit, with hands in considered (not stock-photo) poses.
+	•	No drop shadows on product cards. No gradients except on the rose → bone background fade.
+	•	Motion: subtle. Fades and slow translates only. Easing: cubic-bezier(0.22, 1, 0.36, 1). Durations: 300ms (hover), 600ms (section reveal), 1200ms (hero crossfade).
+	•	Respect prefers-reduced-motion — disable all parallax and crossfade animation.
+2.3 Component Primitives
+All components must be built as composable primitives in /components/ui (button, link, input, badge, dialog, sheet, etc.) and styled to match the brand tokens above. Use Radix UI primitives as the unstyled base for accessibility, then style with Tailwind. shadcn/ui is the recommended starting point — install components individually rather than wholesale.
+
+3. Information Architecture
+3.1 Site Map (v1.0)
+	•	/ — Home
+	•	/collections/[slug] — Collection / landing page (e.g. /collections/soft-feminine)
+	•	/products/[slug] — Product detail page (e.g. /products/berry-bloom)
+
+All other links in the navigation (Cart, Account, Search) are stubs in v1.0 — they exist visually and are wired to the slide-out cart / a placeholder route, but the destination pages are out of scope.
+3.2 Global Header
+Sticky header, 80px tall on desktop, 64px on mobile. Background: bone with a 1px gold-tinted hairline at the bottom. Becomes a translucent backdrop-blur on scroll past 100px.
+Top utility bar (desktop only): 32px, ink background, bone text, character-spaced. Rotates between three messages every 5 seconds (crossfade): "Free shipping above ₹1,500" / "Reusable up to 15 wears" / "Made in India, shipped worldwide".
+Main row: Left — hamburger (mobile) or primary nav (desktop: Shop, Collections, About, Journal). Centre — the ZUVE wordmark in serif, 32px, character-spaced +0.15em. Right — Search icon, Account icon, Cart icon (with item count badge in rose).
+3.3 Global Footer
+Footer is structured as a four-column grid on desktop, accordion on mobile, with a thin gold hairline above. Background: cream. Columns: (1) Newsletter signup ("Receive the Zuve Edit" + email input + Subscribe button), (2) Find a Boutique [v1: links to retailer locator placeholder], (3) Client Services (Contact, Returns, FAQ, Sizing Guide, Track My Order), (4) Maison Zuve (About, Sustainability, Press, Careers).
+Below the columns: a thin row with payment method icons (UPI, Visa, Mastercard, RuPay, Amex, COD), social icons (Instagram, TikTok, YouTube, Pinterest), and "© 2026 Zuve Beauty. India." with a country/language selector.
+3.4 Slide-out Cart (Mini-cart)
+Triggered from the cart icon. Slides in from the right, 420px wide on desktop, full-screen on mobile. Body: list of line items (image, name, size/colour, qty stepper, price, remove); progress bar showing distance to free-shipping threshold ("You're ₹X away from free shipping"); subtotal; primary "Checkout" button in ink; secondary "View Bag" link. This component directly addresses Section 3.2 of the CRO audit (replace full-page cart with slide-out).
+
+4. Page: Home
+REFERENCE  dior.com/en_us/beauty — homepage.
+4.1 Page Goal
+The Home page introduces Zuve as a brand, demonstrates product quality and breadth, and routes the visitor either into a curated collection (browse intent) or directly into a hero product (buy intent). It must do this without ever feeling like a catalogue.
+4.2 Section-by-Section Spec
+4.2.1 Hero Carousel
+	•	Layout: full-bleed, 80vh on desktop (max 720px), 70vh on mobile. Three slides, auto-advancing every 7s, with crossfade — never slide. Pause on hover.
+	•	Content per slide: a cinematic photograph of a hand wearing a featured set, a serif headline left- or right-aligned in negative space (e.g. "For the one you love"), a single text link "Discover" with a hairline underline that animates from 0% to 100% on hover.
+	•	Controls: dot indicators bottom-centre (3 dots, 6px each, gold for active), play/pause icon bottom-left, slide counter bottom-right ("01 / 03").
+	•	Below carousel: a thin row of three "chapter" thumbnails — each is a tiny 80×60 product image with a one-word label ("Bridal", "Everyday", "Statement"). Clicking jumps the carousel to that slide.
+4.2.2 Featured Collection #1 — "The First Press-On"
+A full-width section on a bone background. Left half: a striking close-up photograph of hands. Right half: serif headline "The art of effortless nails.", a 2–3 line paragraph in body type, and a "Discover" text link. Vertical alignment is not centred — the headline sits two-thirds down the right column, leaving generous negative space above. Mirrors Dior's "first gloss lipstick" section.
+4.2.3 The Zuve Beauty Ritual
+Editorial 3-up product spotlight, modelled directly on Dior's "The Miss Dior beauty ritual" block. Layout: large lifestyle photo on the left (40% width), a 3-column product grid on the right (60% width). Each product card is minimal: image only on neutral background, name below in serif, price in Inter, no badges, no buttons. Hover reveals a thin gold underline under the name and a secondary "on-hand" image fade-in (this addresses CRO audit Section 2.2 — secondary hover image).
+Below the grid: a single centred ghost button "Discover the ritual →" linking to the relevant collection.
+4.2.4 Hero Story Banner
+A full-bleed, 70vh editorial banner — a single dramatic photograph (e.g. nails on a draped silk background in a deep rose tone) with a serif headline overlaid: "A celebration of the considered hand." The mood here echoes Dior's "La Collection Privée" iconic-signatures block. Single text-link CTA "Explore". Parallax: the background scrolls at 0.7x page speed (disabled on prefers-reduced-motion).
+4.2.5 New Drop / Seasonal Collection
+Two-column layout: left column is a lifestyle photo of the new collection in context, right column is a 3-product grid (same minimal card pattern as 4.2.3). Above the grid, a small-caps eyebrow label "NEW THIS SEASON" in gold, then the headline. Below the grid: "Discover" ghost button.
+4.2.6 Brand Story Banner
+A full-bleed image with the wordmark integrated into the photograph — for example, the Zuve logotype embossed on packaging, photographed as still life. Mirrors Dior's "Dressed in Dior" Sauvage block. Centred headline, single text-link "Read the story".
+4.2.7 The Finishing Touch (Triptych)
+3-column section on bone. Left column: text — small-caps eyebrow "THE FINISHING TOUCH", serif headline (e.g. "Perfection is in the details."), a 3-line paragraph, and a "Discover" link. Centre and right columns: two tall portrait-ratio images, each captioned with a one-line label below in small-caps ("The art of gifting" / "The personal touch"). Replicates Dior's bottom-of-home triptych.
+4.2.8 Pre-Footer Promotional Strip
+Three equal columns on a cream background, separated by thin gold hairlines. Each column has a small-caps title and a one-sentence pitch with a text link: (1) "On the House: New Exclusive Offer" — first-order discount; (2) "Celebrate Her with Zuve" — gifting CTA tied to the active collection; (3) "New Arrivals Are Here" — link into the latest drop. This mirrors Dior's pre-footer strip exactly.
+4.3 Behaviour Notes
+	•	All text-link CTAs ("Discover", "Explore") use a hairline underline that animates left-to-right on hover. Never use a filled button on the homepage except in the slide-out cart. The visual hierarchy belongs to the photograph, not the button.
+	•	Section reveal: each section fades in with a 12px upward translate when its top edge crosses 85% of the viewport. Use IntersectionObserver, not scroll listeners.
+	•	All images use Next.js <Image> with priority on the hero, lazy on everything below the fold. Provide explicit width/height to prevent layout shift.
+
+5. Page: Collection / Landing
+REFERENCE  dior.com/en_us/beauty/page/mothers-day-fragrance.html
+5.1 Page Goal
+A collection landing page is a curated edit, not a search results page. It sells the story of a theme ("Soft Feminine", "Bridal Edit", "Mother's Day") through alternating editorial photography and product modules. Browse must feel like leafing through a magazine, not scrolling a catalogue.
+5.2 Section-by-Section Spec
+5.2.1 Collection Hero
+A 60vh full-bleed photograph (e.g. a hand wearing the headline set, surrounded by petals or styled props that match the collection's mood). Centred over the image: small-caps eyebrow "THE COLLECTION", serif headline (the collection name, e.g. "Soft Feminine"), and a one-line italic descriptor below the headline. No CTA — the hero is purely atmospheric.
+5.2.2 Editorial Intro Block
+Below the hero, on a bone background: a centred 640px-wide column of editorial copy. Three short paragraphs telling the story of the edit — the inspiration, the shapes, the colour story. Italic pull-quote at the end. Generous vertical padding (96px top and bottom). This is Dior's "discover" introduction equivalent.
+5.2.3 Hero Product Spotlight
+A single "signature" product from the collection, presented as a 2-column block: large product photograph on the left, on the right a serif product name, a 2-line description, the price in Inter, and a primary "Discover" link. This is the editor's pick of the collection.
+5.2.4 Product Grid #1 — Core Edit
+A 3-column responsive grid on desktop, 2-column on tablet, 1-column on mobile. 6 to 9 products. Each card uses the minimal-card pattern (defined in 7.1) with hover behaviours including the secondary "on-hand" image and a Quick Add button (CRO audit: Quick Add to Cart on PLP). Above the grid: small-caps section label and a one-line headline. The grid is asymmetric — every third card spans 1.5x the height to break rhythm, mirroring how Dior breaks its grid with featured tiles.
+5.2.5 Editorial Break — Lifestyle Story
+A full-bleed lifestyle photograph (a styled scene, not a product shot — e.g. an open vanity, hands holding flowers, a mood board) with a centred serif headline overlay (e.g. "A note for her.") and a one-line italic caption. No CTA. This is purely a pacing device — it gives the eye a rest between product modules and tells the reader that this is an edited experience, not a feed. Mirrors Dior's mid-page "Give her something unexpected" break.
+5.2.6 Product Grid #2 — Companion Pieces
+Smaller 4-column grid, more product-dense, no asymmetric breaks. These are the supporting products in the edit — accessories, refills, related shades. The visual treatment is slightly more catalogue-like to signal "add-on" rather than "hero". 8 to 12 products.
+5.2.7 Gifting Block
+A 2-column block: left, a beautifully styled photograph of one of the collection sets in gift packaging; right, a vertical stack — small-caps eyebrow "THE ART OF GIFTING", serif headline, 3-line paragraph, and a "Discover gifting →" text link. Echoes Dior's "The most generous gift" block.
+5.2.8 Editorial Outro / Sign-off
+A 3-line italic serif paragraph, centred, on a cream background, max-width 560px. The sign-off — a small piece of editorial closing copy that puts a bow on the collection. Below it, a thin gold underline-link to the next related collection ("Continue to: Bridal Edit →").
+5.3 Filter / Sort Behaviour (Optional v1.0)
+Filter and sort are out of scope for v1.0 because a curated collection page is, by intent, pre-curated. If a filter UI is included, it lives in a discrete "Refine" button at the top of the first product grid that opens a left-side sheet — never a horizontal toolbar. Default sort is the editor's curated order. Do not implement filters in v1.0 unless explicitly requested; the page should feel like an article, not a category.
+
+6. Page: Product Detail (PDP)
+REFERENCE  dior.com/en_us/beauty/products/miss-dior-body-milk-Y0997169.html
+6.1 Page Goal
+The PDP must do three things, in order of priority: (1) eliminate the sizing uncertainty that the CRO audit identified as the #1 friction point; (2) build trust through reviews, UGC, and craft language; (3) make the add-to-bag action one tap away at all times — including on mobile via a sticky bar. The page is also the most editorial of the three — it tells the story of one product across the full vertical scroll, in the spirit of how Dior treats Miss Dior Body Milk.
+6.2 Above-the-Fold: Gallery + Buy Box
+6.2.1 Layout
+Two-column desktop layout, 60/40 split. Left column: gallery. Right column: buy box, sticky to the top of the viewport so it stays visible as the gallery scrolls. On mobile, the gallery becomes a horizontal swipe carousel above the buy box, and the buy-box CTA becomes a sticky bottom bar (CRO audit medium-priority item).
+6.2.2 Gallery
+Left column: a 4-up vertical thumbnail strip on the far left (each 80×80, 8px gap), and a large primary image to its right. Click thumbnail to swap the primary image. Pinch-to-zoom on mobile; click-to-zoom (modal lightbox) on desktop. Image count: minimum 5 — primary product on neutral background, product in packaging, on-hand close-up, full-hand wide shot, and a video thumbnail (10–20s loop of the application process). The video thumbnail has a centred play icon and opens an inline player.
+6.2.3 Buy Box
+Right column, top-aligned, sticky. From top to bottom:
+	•	Small-caps category breadcrumb ("SOFT GEL NAILS").
+	•	Product name in serif, 2.5rem, weight 400.
+	•	One-line italic descriptor ("Reusable soft-gel nails with a rose-pink finish.").
+	•	Star rating — 5 stars rendered as filled/empty SVG, plus a numeric rating and review count to the right ("4.8 — 124 reviews"). Clicking jumps to the reviews section.
+	•	Price in Inter, 1.5rem, with strikethrough original price beside it if discounted, in mute. Tax-inclusive note in small-caps below: "INCLUSIVE OF ALL TAXES".
+	•	Trust strip — three small icons in a row (Cruelty-Free / Made in India / Reusable up to 15 wears) with one-word labels. (CRO audit: trust badges near ATC.)
+	•	Size / shape selector — a pill-style segmented control with options like "Almond", "Squoval", "Coffin". Selected pill uses ink background and bone text.
+	•	Sizing CTA — a prominent text link with a small ruler icon: "Find my size →". Clicking opens the Sizing Guide modal (see 6.3). This is the audit's #1 priority.
+	•	Quantity stepper — a horizontal − / [1] / + control.
+	•	Primary CTA: "Add to Bag — ₹X,XXX" — a full-width button in ink with bone text. Hover: slight darken. Pressed: 1.5px inward shadow. After click: button text crossfades to "Added ✓" for 1.5s, then the slide-out cart opens.
+	•	Secondary text link below the button: "Express Payment" with UPI / Razorpay logos.
+	•	A delicate hairline divider, then a single line: "Free 2-day shipping on orders above ₹1,500."
+	•	"Mother's Day GIFTING" callout (or active campaign) — a small cream card with a one-line offer message, optional gift wrapping toggle, and a "Learn more" text link. Mirrors Dior's gifting callout in the buy box.
+	•	Three thin accordion rows below the buy box: "Ingredients / Materials", "How to apply", "Shipping & Returns". Each opens with a 200ms ease.
+6.2.4 What is removed — explicitly
+No mandatory "I agree to terms" checkbox before Add to Bag. This is the audit's high-priority fix. Replace it with passive copy at the final checkout step: "By placing your order, you agree to our Terms." This is non-negotiable — do not re-introduce a pre-cart checkbox under any styling.
+6.3 Sizing Guide Modal
+A centred modal, max-width 720px, opens on "Find my size →". Dimmed backdrop (rgba(26,26,26,0.4)) with backdrop-blur. Three tabs across the top:
+	•	Tab 1 — How to Measure: a step-by-step illustrated guide with a printable PDF ruler download link, a "coin reference" photo (₹10 coin = 27mm), and a 30-second video showing the measurement technique. (CRO audit high-priority fix.)
+	•	Tab 2 — Size Chart: a clean numeric table — column 1 finger position (Thumb / Index / Middle / Ring / Little), columns 2-16 the 15 included sizes mapped to mm width.
+	•	Tab 3 — Fit Quiz (optional): 4-question quiz that recommends a starting nail shape and a standard size template. Saves the result to localStorage so the recommendation persists across sessions.
+The modal is keyboard-accessible: Esc to close, Tab traps focus, focus returns to the "Find my size →" link on close.
+6.4 Below-the-Fold: Editorial Story Sections
+6.4.1 Description Block
+A centred 640px column. Editorial product description in serif body — 3 to 5 short paragraphs with a single italic pull-quote in the middle. "See more" link to expand if longer.
+6.4.2 "How to Apply" Visual Walkthrough
+Two-column block: left is a hand-held photograph of the product mid-application; right is a centred eyebrow label "HOW TO APPLY", a serif sub-headline ("As a finishing touch."), and a 4-step numbered list — each step is one short sentence. Mirrors Dior's "How to apply" section. On scroll, the steps reveal one-by-one with a 100ms stagger.
+6.4.3 The Ritual / Story Block
+A full-bleed editorial photograph (e.g. florals, packaging, a styled hand) on the right, a vertical text block on the left over a bone or cream background. Eyebrow "THE RITUAL", serif headline ("The rose beauty ritual."), 2-3 line paragraph telling the brand story behind the product. No CTA. Echoes Dior's "The rose beauty ritual" block.
+6.4.4 Routine / Cross-Sell Strip
+A horizontal scroll strip of 5–7 "Refresh / Hydrate / Add the finishing touch"-style cards. Each card has a minimal product image, a one-word step label ("Step 1 / Step 2 / Step 3"), the product name, and a small "Discover" link. Replicates Dior's "Refresh your skin / Hydrate your skin / Add the finishing touch" routine row. Slot dot indicators below the strip.
+6.4.5 Lifestyle Video Block
+A full-bleed muted autoplay video (max 30s, looped, with a poster frame) of the product in a lifestyle moment — for example, a slow pan over hands at a café, or a model adjusting a dress with the manicure visible. Centred serif overlay text. Audio toggle bottom-left. Echoes Dior's "And you, what would you do for love?" lifestyle video. Disable autoplay on prefers-reduced-motion and on data-saver mode.
+6.4.6 "Discover" Cross-Sell Carousel
+A 4-up product carousel on a bone background, with a centred serif headline "Discover". Same minimal card pattern as the homepage. Arrow navigation on the sides; horizontal swipe on touch. This addresses the "empty review section feels like a ghost town" issue obliquely — even if reviews are sparse, the page never feels empty because cross-sell follows.
+6.5 Reviews Section
+6.5.1 Structure
+Section title "PRODUCT NAME — REVIEWS" in serif, centred. Below: a 4-column block — column 1 is a moderation note ("Reviews are moderated by our service partner Bazaarvoice. Read terms."); columns 2-4 contain the review count, sort dropdown, and a "Write a review" button. Each review card: rating, reviewer initials, location, date, headline, body, and a single "Yes, recommends this product ✓" line. Photo reviews appear with a thumbnail strip above the body. Pagination: "Load more" button at the bottom — never an infinite scroll, because the user must be able to reach the footer.
+6.5.2 Empty State
+Critical: if a product has fewer than 3 reviews, do not render the reviews section as empty (the audit's "ghost town" problem). Instead, render a single editorial card: a serif quote ("This shade is the one I reach for first.") attributed to the founder or a stylist, plus a "Be the first to review" CTA. The empty state must look intentional, not absent.
+6.5.3 UGC Strip
+Below the reviews, a horizontal strip of Instagram UGC tiles (8 tiles on desktop, swipeable on mobile) under the heading "As worn by you". Each tile is a square image with a small Instagram icon overlay; clicking opens a lightbox with the full post and a "Shop this look" link. (CRO audit: UGC section as social proof.)
+6.6 Mobile-Specific Behaviour
+	•	Sticky add-to-bag bar: a 64px bar fixed to the bottom of the viewport when the user scrolls past the buy box. Contains: thumbnail of selected variant, product name (truncated), price, and a primary "Add to Bag" button. The bar appears with a 200ms slide-up.
+	•	Sticky size selector: when the sticky bar is visible, tapping it expands an inline drawer with the size selector before adding to bag. Don't take the user away from the page.
+	•	Gallery: horizontal swipe carousel with dot indicators. Pinch-zoom enabled. Maximum 5 swipes from end-to-end before reaching CTA.
+6.7 WhatsApp Support Trigger
+A floating circular WhatsApp button, 56px, bottom-right, 24px from edges. On click, opens a wa.me link with a pre-filled message ("Hi, I have a question about [Product Name]"). Hidden when the mobile sticky add-to-bag bar is visible (to avoid overlap), or repositioned to bottom-left in that state. Addresses CRO audit Section 4 — WhatsApp integration.
+
+7. Shared Components
+7.1 Product Card (Minimal)
+The minimal product card is the most reused unit on the site. Its restraint is what makes the photography breathe.
+	•	Square aspect ratio for the image (1:1) on a neutral background — no badges over the image, ever.
+	•	Below the image: product name in serif (1rem), one-line shade or shape descriptor in small-caps mute (0.75rem), price in Inter (1rem).
+	•	Hover: secondary image crossfades in (300ms); a thin gold hairline animates under the product name; a "Quick Add" button slides up from the bottom of the image at 80% opacity (CRO audit medium-priority).
+	•	No drop shadow. No card border. No "Sale" sticker — instead, if discounted, show original price strikethrough in mute beside the new price.
+	•	Click target is the entire card, not just the name.
+7.2 Quick Add Button
+Appears on hover (desktop) and is permanently visible on mobile (small icon-only button bottom-right of the image). Click adds the default variant to the bag and triggers the slide-out cart. If the product has variants (size, shape), Quick Add instead opens a tiny popover with a variant selector — never adds an unselected variant silently.
+7.3 Buttons
+	•	Primary: ink fill, bone text, no border-radius (0px), no shadow. Padding 16px 32px. Hover: bg lightens by 10%. Reserved for ATC and Checkout.
+	•	Ghost: transparent fill, ink border 1px, ink text, no border-radius. Same padding. Hover: bg becomes ink, text becomes bone. Used for "Discover" CTAs in homepage modules.
+	•	Text-link with hairline: ink text, 1px gold underline. Hover: underline animates left-to-right via a CSS transform-origin trick. The default editorial CTA throughout the site.
+7.4 Announcement Bar
+32px height, ink background, bone text. Sits above the header. Rotates between three messages every 5s with a crossfade. Dismissible by a small × on the right (state stored in localStorage so it doesn't reappear in the same session). Mobile: same height, single message at a time, swipeable.
+7.5 Newsletter Signup
+Used in the footer and as a homepage band before the footer. Inline layout: a one-line label ("Receive the Zuve Edit"), an email input with a hairline bottom border (no box), a "Subscribe" text-link button, and a tiny privacy line below. On submit, the input swaps to a serif confirmation: "You're on the list. Thank you."
+7.6 WhatsApp FAB
+See Section 6.7. Spec is consistent across all three pages — present always, repositioned on mobile when the sticky CTA bar is showing.
+7.7 Slide-out Cart
+See Section 3.4 for spec. Lives globally, available from any page. Component name: <CartSheet />. State managed via Zustand store /lib/store/cart.ts.
+
+8. Technical Stack
+8.1 Framework & Core
+	•	Next.js 15 (App Router) — server components by default, client components opt-in for interactivity.
+	•	React 19 — for Actions, useFormStatus, useOptimistic where relevant.
+	•	TypeScript 5 — strict mode on. No `any` without justification. All component props typed.
+	•	Node 20 LTS on the Antigravity build environment.
+8.2 Styling & UI
+	•	Tailwind CSS v4 — configured with the brand tokens in Section 2.2. CSS variables in :root for runtime theme access.
+	•	shadcn/ui — installed component-by-component (button, sheet, dialog, accordion, tabs, dropdown-menu, scroll-area). Restyled to match brand tokens; never use shadcn's default theme.
+	•	Radix UI — under the shadcn layer; relied on directly for any primitive not in shadcn.
+	•	Framer Motion — for hero crossfade, section reveals, sticky bar slide-up. Avoid heavy use; respect prefers-reduced-motion.
+	•	Lucide React — icons. Stroke-width 1.5 globally for visual elegance.
+	•	Embla Carousel — for the hero, gallery, and cross-sell carousels. Lightweight, accessible, headless.
+8.3 Content & Data
+v1.0 ships with a static, in-repo content layer. CMS integration is a v1.1 concern.
+	•	Product data: typed JSON files in /content/products/*.ts, each exporting a typed object.
+	•	Collection data: /content/collections/*.ts.
+	•	Home page modules: /content/home/sections.ts.
+	•	Image assets: stored in /public/images, organized by /products, /editorial, /home, /collections. Use Next.js Image with explicit dimensions.
+	•	Future migration path: a CMS adapter interface in /lib/content/types.ts so the data source can be swapped to Sanity, Contentful, or Shopify Storefront API in v1.1 without touching components.
+8.4 Forms & Validation
+	•	React Hook Form — newsletter, sizing fit-quiz, contact stub.
+	•	Zod — schema validation, both client and server.
+8.5 State Management
+	•	Zustand — a single cart store: items, totals, isOpen, helpers. Persisted to localStorage. No global app store beyond cart.
+	•	React Server Components — fetch and render where possible. Use "use client" only for interactivity (carousels, slide-out cart, sticky CTA, modals).
+8.6 Analytics & Monitoring
+	•	PostHog or GA4 — page views, ATC events, sizing-guide opens, WhatsApp clicks.
+	•	Sentry for error tracking.
+	•	Custom event names typed in /lib/analytics/events.ts.
+8.7 Build & Deployment
+	•	Antigravity is the AI-assisted build environment used to develop the site; the site itself deploys to Vercel.
+	•	Use the Antigravity prompts in /docs/agents/* (one per page) to direct the agent through each page's implementation. Each prompt should reference this PRD by section number.
+	•	Environment variables in .env.local; never commit secrets. Required: NEXT_PUBLIC_GA_ID, WHATSAPP_NUMBER, RAZORPAY_KEY (placeholder for v1.0).
+8.8 Folder Structure
+Path
+Purpose
+/app/(site)/page.tsx
+Home page — server component composing module sections.
+/app/(site)/collections/[slug]/page.tsx
+Collection landing page; static-generated for known slugs.
+/app/(site)/products/[slug]/page.tsx
+Product detail page; static-generated for known slugs.
+/app/layout.tsx
+Root layout — header, footer, cart provider, fonts.
+/components/ui/*
+Shadcn primitives, brand-styled.
+/components/site/*
+Header, footer, cart-sheet, announcement-bar, whatsapp-fab.
+/components/sections/home/*
+Hero, ritual, finishing-touch, etc. — one file per home section.
+/components/sections/collection/*
+Sections specific to the collection page.
+/components/sections/product/*
+Buy-box, gallery, sizing-modal, reviews, etc.
+/lib/store/cart.ts
+Zustand cart store.
+/content/*
+Static product, collection, and editorial content.
+/public/images/*
+Optimized brand and product photography.
+
+9. CRO Requirements (Audit Mapping)
+Every audit recommendation that falls within the three pages in scope must be addressed by v1.0 launch. The table below maps each audit item to its implementation home in this PRD.
+Audit Issue
+Priority
+v1.0 Resolution
+PRD Reference
+Mandatory T&C checkbox before ATC
+HIGH
+Removed entirely. Replaced with passive disclosure at final checkout.
+§ 6.2.4
+No visual sizing guide on PDP
+HIGH
+"Find my size →" CTA in buy box opens dedicated 3-tab modal with measurement guide, chart, and fit quiz.
+§ 6.2.3, § 6.3
+Empty reviews "ghost town" effect
+HIGH
+Editorial empty state with founder quote + "Be the first to review" CTA when < 3 reviews. UGC strip below.
+§ 6.5.2, § 6.5.3
+Missing trust badges near ATC
+HIGH
+Three-icon trust strip in buy box: Cruelty-Free / Made in India / Reusable.
+§ 6.2.3 (item 6)
+No secondary image on PLP hover
+MED
+Minimal product card crossfades to a second image on hover.
+§ 7.1
+No Quick Add on PLP
+MED
+Quick Add button appears on hover (desktop) / always visible (mobile) on every product card.
+§ 7.2
+Sticky ATC missing on mobile
+MED
+Sticky bottom bar with thumbnail, name, price, ATC appears past buy-box on mobile.
+§ 6.6
+Unclear shipping threshold
+MED
+Free-shipping message in announcement bar + cart progress indicator.
+§ 3.2, § 3.4
+Heavy full-page cart flow
+MED
+Slide-out mini-cart replaces full-page cart for the v1.0 in-scope flow.
+§ 3.4
+Hero needs higher impact
+MED
+Cinematic 80vh hero carousel with editorial photography and crossfade.
+§ 4.2.1
+Missing UGC / social proof
+MED
+UGC Instagram strip on PDP; "As worn by you" — 8 swipeable tiles.
+§ 6.5.3
+WhatsApp support absent
+MED
+Floating WhatsApp FAB present on all three pages; pre-filled product context message.
+§ 6.7, § 7.6
+UPI not visibly primary
+MED
+"Express Payment" link with UPI logo directly under ATC; UPI icons first in footer payment row.
+§ 6.2.3 (item 11), § 3.3
+COD fee surprise
+LOW
+COD ₹100 handling fee disclosed in shipping accordion on PDP and at cart total.
+§ 6.2.3 (item 14), § 3.4
+
+10. Accessibility & Performance
+10.1 Accessibility Standards
+Target: WCAG 2.2 AA across all three pages. The site sells a beauty product to a wide audience including older shoppers, screen-reader users, and shoppers using zoom and high-contrast modes. Accessibility is a brand standard, not a checklist.
+	•	All interactive elements keyboard-reachable in a logical order; visible focus rings (2px gold offset).
+	•	Colour contrast: ink on bone passes AAA; mute on bone passes AA only — never use mute for primary content.
+	•	Every image has a meaningful alt attribute; decorative images have alt="".
+	•	Headings strictly hierarchical: one h1 per page, no skipped levels.
+	•	Modals (sizing guide, lightbox) trap focus, restore focus on close, and can be dismissed with Escape.
+	•	Carousels expose previous/next buttons with aria-labels; current slide announced via aria-live="polite".
+	•	All forms have visible labels (not placeholder-as-label) and inline error messages tied to inputs via aria-describedby.
+	•	Honour prefers-reduced-motion — no parallax, no autoplay, no hero crossfade.
+10.2 Performance Budgets
+	•	LCP under 2.5s on a Moto G4 / Slow 4G test profile (the realistic Indian mobile condition).
+	•	CLS under 0.05; every image has explicit width/height.
+	•	INP under 200ms; carousels and modals must not block the main thread.
+	•	Total JS shipped per page under 150KB gzipped; lean on server components.
+	•	Images: AVIF first, WebP fallback, JPEG ultimate. Hero served at multiple breakpoints (sizes attribute set correctly).
+	•	Fonts: subset Cormorant Garamond and Inter, served with font-display: swap, preloaded.
+	•	No third-party scripts above the fold; defer GA, PostHog, and chat scripts until after the first interaction or 3s, whichever is first.
+10.3 SEO
+	•	Each page has unique title and meta description, set via Next.js generateMetadata.
+	•	Product pages emit Product schema (JSON-LD) including offers, price, availability, aggregateRating.
+	•	Collection pages emit ItemList schema.
+	•	Open Graph and Twitter card tags set per page; OG image is the page hero, generated at 1200×630.
+	•	XML sitemap auto-generated; robots.txt allows everything except the cart routes.
+
+11. Milestones & Delivery
+11.1 Phased Plan
+Phase
+Duration
+Deliverables
+0 — Foundations
+Week 1
+Next.js scaffold; Tailwind tokens; Cormorant + Inter fonts; brand colour system; folder structure; shadcn primitives styled to brand; analytics shim; deploy to staging on Vercel.
+1 — Global Chrome
+Week 2
+Header, footer, announcement bar, slide-out cart with Zustand store, WhatsApp FAB, accessibility primitives, focus management.
+2 — Home
+Weeks 2–3
+All eight homepage sections (§ 4.2). Hero carousel and section reveal animations. Editorial photography integrated.
+3 — Collection
+Week 3
+Full collection page (§ 5). Asymmetric grid; editorial breaks; gifting block. One sample collection populated end-to-end.
+4 — PDP
+Weeks 4–5
+Buy box, sticky behaviour, gallery, sizing modal (3 tabs), editorial story sections, reviews with empty state, UGC strip, mobile sticky CTA.
+5 — Polish & QA
+Week 6
+Lighthouse pass (≥ 90 mobile); WCAG 2.2 AA audit (axe + manual screen-reader); cross-browser test (Chrome, Safari, Firefox, Samsung Internet); content review; copy editing.
+6 — Launch
+Week 7
+DNS cutover; analytics validated; staging-to-prod data migration; soft-launch monitoring; first-week metrics review.
+11.2 Out of Scope (v1.1+)
+	•	Cart page (full route) and Checkout — currently slide-out cart only routes to a placeholder.
+	•	Account, login, order history.
+	•	Search results page — search icon stub only in v1.0.
+	•	Blog / Journal — link in nav goes to placeholder.
+	•	CMS integration — content is static-typed in v1.0.
+	•	Loyalty program ("Zuve Rewards") — audit Section 5 low-priority, deferred.
+	•	Personalization quiz — audit Section 5 low-priority, deferred to v1.1.
+	•	Multi-language / multi-region — India-only English in v1.0.
+11.3 Open Questions
+	•	Final brand fonts — Cormorant Garamond is the recommendation; brand may have a licensed alternative.
+	•	Photography availability — does Zuve have lifestyle and editorial-grade hand photography in the volume this design demands? If not, a photo shoot must precede Phase 2.
+	•	Reviews provider — Loox vs Judge.me vs Bazaarvoice. Audit suggests Loox or Judge.me; final pick affects the reviews component implementation.
+	•	Payments stack — Razorpay is assumed; confirm before Phase 4.
+	•	CMS direction for v1.1 — Sanity, Contentful, or Shopify Storefront affects the /lib/content/types.ts adapter shape.
+
+Appendix A — Antigravity Prompt Templates
+These are starter prompts for handing each page off to the Antigravity agent. Each prompt should be paired with this PRD as context. Reference the relevant sections by number.
+A.1 Home page prompt
+PROMPT  Build the Zuve Beauty home page in Next.js 15 (App Router) per PRD § 4. Use Tailwind tokens from § 2.2 and shared components from § 7. Implement all eight sections in § 4.2, the hero carousel with crossfade, the asymmetric ritual grid, and the pre-footer triptych. Mobile-first, WCAG 2.2 AA, prefers-reduced-motion respected. Use Embla for the carousel. Output the file tree and each file.
+A.2 Collection page prompt
+PROMPT  Build the collection page at /collections/[slug] per PRD § 5. Static-generate for the slugs listed in /content/collections. Implement sections 5.2.1–5.2.8 in order. Asymmetric grid breaks every third card 1.5x tall. No filters in v1.0. Use the shared minimal product card from § 7.1.
+A.3 PDP prompt
+PROMPT  Build the product detail page at /products/[slug] per PRD § 6. Implement the 60/40 layout with sticky buy box, gallery with thumbnail strip, three-tab sizing modal (§ 6.3), editorial story sections (§ 6.4), reviews with empty-state (§ 6.5), UGC strip, mobile sticky ATC bar (§ 6.6), and WhatsApp FAB. Do not include a T&C checkbox. Address every PRD § 9 item that lands on this page.
+Appendix B — Glossary
+Term
+Definition
+PDP
+Product Detail Page — a single-product page like /products/berry-bloom.
+PLP
+Product Listing Page — a category or collection page; in this PRD synonymous with collection page.
+ATC
+Add to Cart / Add to Bag.
+UGC
+User-Generated Content — Instagram posts, photo reviews, customer videos.
+FAB
+Floating Action Button — the always-visible WhatsApp circle bottom-right.
+LCP / CLS / INP
+Core Web Vitals — Largest Contentful Paint, Cumulative Layout Shift, Interaction to Next Paint.
+RSC
+React Server Component — renders on the server, ships zero JS to the client.
+Antigravity
+The AI-assisted development environment used to build this site.
+
+End of document.
