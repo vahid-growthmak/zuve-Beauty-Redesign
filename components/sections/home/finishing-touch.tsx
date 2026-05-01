@@ -57,7 +57,7 @@ export function FinishingTouch() {
                   className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5 text-bone">
                   <p className="font-serif text-h3" style={{ fontWeight: 400 }}>
                     {t.title}

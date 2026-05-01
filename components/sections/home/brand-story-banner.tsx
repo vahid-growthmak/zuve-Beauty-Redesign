@@ -12,7 +12,7 @@ export function BrandStoryBanner() {
         className="object-cover opacity-90"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/20 to-transparent" />
+      <div className="absolute inset-0 bg-ink/30 bg-gradient-to-t from-ink/60 via-ink/20 to-transparent" />
       <div className="absolute inset-0 flex items-end justify-center pb-16 md:pb-24 px-6 text-center text-bone">
         <div className="max-w-2xl">
           <h2

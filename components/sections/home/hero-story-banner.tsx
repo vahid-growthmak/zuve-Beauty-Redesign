@@ -11,7 +11,7 @@ export function HeroStoryBanner() {
         className="object-cover"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-ink/30" />
+      <div className="absolute inset-0 bg-ink/40" />
       <div className="absolute inset-0 flex items-center justify-center text-center text-bone px-6">
         <div className="max-w-2xl">
           <p className="eyebrow text-bone/80 mb-6">THE EDIT</p>

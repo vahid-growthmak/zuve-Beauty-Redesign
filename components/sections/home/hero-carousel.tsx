@@ -48,7 +48,7 @@ export function HeroCarousel() {
               quality={100}
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink/10 via-transparent to-ink/10" />
+            <div className="absolute inset-0 bg-ink/30" />
             <div
               className={`absolute inset-0 flex items-center px-8 md:px-20 ${
                 slide.align === "right"
