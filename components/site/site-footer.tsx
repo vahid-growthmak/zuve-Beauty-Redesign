@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, Instagram, Youtube, Facebook } from "lucide-react";
@@ -183,8 +184,14 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="bg-cream py-6 flex justify-center">
-        <span className="font-serif text-[28px] tracking-wordmark text-ink/80">ZUVE</span>
+      <div className="bg-cream py-6 flex justify-center opacity-80">
+        <Image 
+          src="/images/home/zuve-logo-black.webp" 
+          alt="Zuve" 
+          width={120} 
+          height={36} 
+          className="h-8 w-auto"
+        />
       </div>
     </footer>
   );

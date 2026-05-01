@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, Search, User, ShoppingBag, X } from "lucide-react";
@@ -75,10 +76,16 @@ export function SiteHeader() {
         <div className="flex justify-center shrink-0">
           <Link
             href="/"
-            className="font-serif text-[28px] md:text-[32px] tracking-wordmark leading-none"
-            style={{ fontWeight: 400 }}
+            className="block"
           >
-            ZUVE
+            <Image 
+              src="/images/home/zuve-logo-black.webp" 
+              alt="Zuve" 
+              width={100} 
+              height={30} 
+              className="h-6 md:h-8 w-auto"
+              priority
+            />
           </Link>
         </div>
 
@@ -114,7 +121,13 @@ export function SiteHeader() {
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-50 bg-bone">
           <div className="flex items-center justify-between h-16 px-6 border-b border-gold/30">
-            <span className="font-serif text-[24px] tracking-wordmark">ZUVE</span>
+            <Image 
+              src="/images/home/zuve-logo-black.webp" 
+              alt="Zuve" 
+              width={100} 
+              height={30} 
+              className="h-6 w-auto"
+            />
             <button
               aria-label="Close menu"
               onClick={() => setMobileOpen(false)}
